@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { persistedReducer } from './root-reducer';
 import {
   persistStore,
-  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -9,18 +9,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-
-import storage from 'redux-persist/lib/storage';
-
-import { rootReducer } from './root-reducer';
-
-const persistConfig = {
-  key: 'root',
-  storage,
-  whitelist: ['contacts'],
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
